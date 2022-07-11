@@ -7,23 +7,43 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
+import { auth } from "../firebase";
 
 const LoginScreen = () => {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const handleSignUp = () => {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+        console.log(user.email);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
           placeholder="Email Address"
-          // value={}
-          // onChangeText={ text => {}}
+          value={email}
+          onChangeText={(text) => {
+            setEmail(text);
+          }}
         />
         <TextInput
           style={styles.input}
           placeholder="Password"
           secureTextEntry={true}
-          // value={}
-          // onChangeText={ text => {}}
+          value={password}
+          onChangeText={(text) => {
+            setPassword(text);
+          }}
         />
       </View>
       <View style={styles.buttonContainer}>
@@ -34,7 +54,7 @@ const LoginScreen = () => {
           <Text style={[styles.buttonText]}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          // onPress={() => {}}
+          onPress={handleSignUp}
           style={[styles.button, styles.buttonOutline]}
         >
           <Text style={[styles.buttonText, styles.buttonOutlineText]}>
@@ -87,12 +107,12 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    fontWeight: "bold",
+    fontWeight: "700",
     fontSize: 16,
   },
   buttonOutlineText: {
     color: "#0782F9",
-    fontWeight: "bold",
+    fontWeight: "700",
     fontSize: 16,
   },
   // onPress={() => {}}
