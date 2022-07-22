@@ -20,9 +20,7 @@ const LoginScreen = () => {
         const user = userCredentials.user;
         console.log(user.email);
       })
-      .catch((err) => {
-        alert(err.message);
-      });
+      .catch((err) => alert(err.message));
   };
 
   return (

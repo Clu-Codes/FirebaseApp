@@ -1,7 +1,16 @@
 // Import the functions you need from the SDKs you need
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import "dotenv/config";
+// import "dotenv/config";
+import {
+  FIREBASE_KEY,
+  FIREBASE_AUTH_DOMAIN,
+  FIREBASE_PROJECT_ID,
+  FIREBASE_BUCKET,
+  FIREBASE_SENDER_ID,
+  FIREBASE_APP_ID,
+} from "@env";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
